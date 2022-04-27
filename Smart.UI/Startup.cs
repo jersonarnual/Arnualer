@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -75,6 +76,7 @@ namespace Smart.UI
         #region Private Methods 
         private static void LoadScopes(IServiceCollection services)
         {
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<SmartContext>();
             services.AddScoped(typeof(IDefaultRepository<>), typeof(DefaultRepository<>));
         }
         #endregion
