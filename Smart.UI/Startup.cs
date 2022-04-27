@@ -34,13 +34,12 @@ namespace Smart.UI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connString = Configuration.GetConnectionString("SmartDB");
-
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            //services.AddMvc();
             services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<SmartContext>(item => item.UseSqlServer(connString), ServiceLifetime.Transient);
+            services.AddDbContext<SmartContext>(item => item.UseSqlServer(Configuration.GetConnectionString("SmartDB")), ServiceLifetime.Transient);
             LoadScopes(services);
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
