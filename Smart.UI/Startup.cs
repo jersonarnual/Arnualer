@@ -37,6 +37,7 @@ namespace Smart.UI
             string connString = Configuration.GetConnectionString("SmartDB");
 
             services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<SmartContext>(item => item.UseSqlServer(connString), ServiceLifetime.Transient);
             LoadScopes(services);
             services.AddMvc();
